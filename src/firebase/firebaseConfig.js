@@ -1,6 +1,7 @@
-// Import the functions you need from the SDKs you need
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { initializeApp } from "firebase/app";
-import {getAuth, GoogleAuthProvider, signInWithPopup} from 'firebase/auth'
+import { getAuth, GoogleAuthProvider, signInWithPopup,onAuthStateChanged} from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -18,21 +19,36 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
-const provider = new GoogleAuthProvider()
+const provider = new GoogleAuthProvider();
 
 export const SignInWithGoogle = () => {
-    signInWithPopup(auth, provider)
-        .then((result) => {
-            const name = result.user.displayName;
-            const email = result.user.email;
-            const profilePicture = result.user.photoURL;
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      const name = result.user.displayName;
+      const email = result.user.email;
+      const profilePicture = result.user.photoURL;
 
-            localStorage.setItem('name', name)
-            localStorage.setItem("email", email);
-            localStorage.setItem("profilePicture", profilePicture);
-        
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+      localStorage.setItem("name", name);
+      localStorage.setItem("email", email);
+      localStorage.setItem("profilePicture", profilePicture);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
+
+// HOOK USEAUTH... Este hook sirve para mantener autenticada la aplicacion
+export function useAuth() {
+    const [currentUser, setCurrentUser] = useState();
+
+const navigate = useNavigate();
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => setCurrentUser(user));
+        if (!unsubscribe) {
+            navigate('/Login');
+        }
+        return unsubscribe;
+    }); 
+    return currentUser;
+}
