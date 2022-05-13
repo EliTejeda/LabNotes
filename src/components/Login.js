@@ -1,29 +1,44 @@
-import "./Home.css";
-import React, { Fragment, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { SignInWithGoogle } from "../firebase/firebaseConfig";
+/* eslint-disable no-console */
+import './Login.css';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import GoogleButton from 'react-google-button';
+import { signOut } from 'firebase/auth';
+import { googleLogin, auth, provider } from '../firebase/firebaseConfig';
 
-import GoogleButton from "react-google-button";
+function Login() {
+  const navigate = useNavigate();
 
-export function Login() {
+  const handleGoogle = async (app) => {
+    console.log(app);
+    await googleLogin(auth, provider).then((isAuth) => {
+      navigate('/Home');
+      console.log(isAuth);
+    });
+  };
+
+  const handleLogOut = () => {
+    signOut(auth)
+      .then(() => navigate('/'))
+      .catch((error) => console.log(error));
+  };
+
   return (
     <>
       <img
         className="logo_anota"
-        src={require("../assets/logo_anota.png")}
+        src="../assets/logo_anota.png"
         alt="logo_anota"
       />
       <h1> Log In </h1>
 
       <form>
         <div>
-          <GoogleButton type="light" onClick={SignInWithGoogle}></GoogleButton>
+          <GoogleButton type="light" onClick={handleGoogle} />
+          <button type="submit" onClick={handleLogOut}>Log Out</button>
         </div>
       </form>
-
-      <img src={localStorage.getItem("profilePicture")} />
-      <h1>{localStorage.getItem("name")}</h1>
-      <h2>{localStorage.getItem("email")}</h2>
     </>
   );
 }
+export default Login;
