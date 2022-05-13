@@ -3,8 +3,8 @@ import './Login.css';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import GoogleButton from 'react-google-button';
-import { signOut } from 'firebase/auth';
-import { googleLogin, auth, provider } from '../firebase/firebaseConfig';
+import logoTitle from '../assets/img/logoTitle.png';
+import { googleLogin, auth, provider } from '../../firebase/firebaseConfig';
 
 function Login() {
   const navigate = useNavigate();
@@ -17,17 +17,10 @@ function Login() {
     });
   };
 
-  const handleLogOut = () => {
-    signOut(auth)
-      .then(() => navigate('/'))
-      .catch((error) => console.log(error));
-  };
-
   return (
     <>
       <img
-        className="logo_anota"
-        src="../assets/logo_anota.png"
+        src={logoTitle}
         alt="logo_anota"
       />
       <h1> Log In </h1>
@@ -35,7 +28,7 @@ function Login() {
       <form>
         <div>
           <GoogleButton type="light" onClick={handleGoogle} />
-          <button type="submit" onClick={handleLogOut}>Log Out</button>
+
         </div>
       </form>
     </>
