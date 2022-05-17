@@ -37,3 +37,13 @@ export function useAuth() {
   });
   return currentUser;
 }
+/* export const notes = (title, note) => {
+  const user = auth.currentUser;
+  const { uid } = user;
+  addDoc(collection(db, "notes"), {
+    title,
+    note,
+    uid,
+    timestamp: serverTimestamp(),
+  });
+}; */

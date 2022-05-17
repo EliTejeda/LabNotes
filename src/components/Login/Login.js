@@ -3,7 +3,7 @@ import './Login.css';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import GoogleButton from 'react-google-button';
-import logoTitle from '../assets/img/logoTitle.png';
+import logoTitle from '../../assets/img/logoTitle.png';
 import { googleLogin, auth, provider } from '../../firebase/firebaseConfig';
 
 function Login() {
