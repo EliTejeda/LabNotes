@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { IoExitSharp, IoAddCircleSharp } from 'react-icons/io5';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../firebase/firebaseConfig';
+import CreateNotes from '../Notes/CreateNotes';
 
 export default function Home() {
   const navigate = useNavigate();
@@ -12,14 +13,15 @@ export default function Home() {
       .catch((error) => console.log(error));
   };
   const handleAddNote = () => {
-    navigate('/NoteView');
+    navigate('/CreateNotes');
   };
 
   return (
     <>
-      <div>Aqui van las notas</div>
+      <div className="notes-list"> Aqui van las notas</div>
       <IoExitSharp type="submit" onClick={handleLogOut} size="4.3em" />
       <IoAddCircleSharp type="submit" onClick={handleAddNote} size="4.3em" />
+      <CreateNotes />
     </>
   );
 }
