@@ -8,7 +8,7 @@ export default function CreateNotes() {
   const onNavigate = useNavigate();
   /* const user = auth.currentUser; */
 
- /* const [title, setTitle] = useState('');
+  const [title, setTitle] = useState('');
   const [text, setText] = useState('');
 
   const handleAddNote = () => {
@@ -29,7 +29,7 @@ export default function CreateNotes() {
 
   const handleNavHome = () => {
     onNavigate('/Home');
-  };*/
+  };
 
   return (
     <>

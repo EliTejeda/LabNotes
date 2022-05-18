@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IoExitSharp, IoAddCircleSharp } from 'react-icons/io5';
@@ -18,7 +19,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="notes-list"> Aqui van las notas</div>
+      <div className="notes-list">Aqui van las notas</div>
       <IoExitSharp type="submit" onClick={handleLogOut} size="4.3em" />
       <IoAddCircleSharp type="submit" onClick={handleAddNote} size="4.3em" />
       <CreateNotes />
