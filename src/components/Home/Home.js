@@ -20,7 +20,7 @@ export default function Home() {
       .catch((error) => console.log(error));
   };
   const handleAddNote = () => {
-    navigate('/NoteOne');
+    navigate('/CreateNote');
   };
 
   return (
