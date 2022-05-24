@@ -2,6 +2,7 @@
 import './Login.css';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Grid from "@mui/material/Grid";
 import GoogleButton from 'react-google-button';
 import logoTitle from '../../assets/img/logoTitle.png';
 import { googleLogin, auth, provider } from '../../firebase/firebaseConfig';
@@ -18,20 +19,17 @@ function Login() {
   };
 
   return (
-    <>
-      <img
-        src={logoTitle}
-        alt="logo_anota"
-      />
-      <h1> Log In </h1>
-
-      <form>
-        <div>
-          <GoogleButton type="light" onClick={handleGoogle} />
-
-        </div>
+    <section className="loginContainer">
+      <div className="imgContainer">
+        <img src={logoTitle} alt="logo_anota" />
+      </div>
+      <div className="welcomeContainer">
+        <h1> Log In </h1>
+      </div>
+      <form className="authContainer">
+        <GoogleButton type="light" onClick={handleGoogle} />
       </form>
-    </>
+    </section>
   );
 }
 export default Login;
