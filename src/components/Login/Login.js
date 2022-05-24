@@ -20,7 +20,7 @@ function Login() {
   return (
     <section className="loginContainer">
       <div className="imgContainer">
-        <img src={logoTitle} alt="logo_anota" />
+        <img src={logoTitle} alt="logo_anota" width="300px" />
       </div>
       <div className="welcomeContainer">
         <h1> Log In </h1>
