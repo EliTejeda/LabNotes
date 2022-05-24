@@ -28,6 +28,12 @@ function Login() {
       <form className="authContainer" direction="column" alignItems="center" justifyContent="center">
         <GoogleButton type="light" onClick={handleGoogle} />
       </form>
+      <footer className="footerLogin">
+        <p className="author">
+          Eli Tejeda &copy; 2022
+        </p>
+
+      </footer>
     </section>
   );
 }
