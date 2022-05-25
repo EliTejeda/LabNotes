@@ -27,7 +27,7 @@ export default function Home() {
     <section className="homeContainer">
 
       <nav className="menuTop">
-        <img src={logoTitle} alt="logo_anota" width="100px" />
+        <img src={logoTitle} alt="logo_anota" width="200px" />
         <IoExitSharp type="submit" onClick={handleLogOut} size="4.3em" />
       </nav>
       <section className="notesContainer" />

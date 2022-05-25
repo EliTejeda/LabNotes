@@ -32,8 +32,8 @@ export default function NoteOne() {
         <textarea
           className="noteTextArea"
           placeholder="Write your note here"
-          rows="40"
-          cols="40"
+          rows="30"
+          cols="30"
         />
       </form>
       <footer className="menuBottom">
