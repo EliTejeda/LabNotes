@@ -5,6 +5,9 @@ import { initializeApp } from 'firebase/app';
 import {
   getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged,
 } from 'firebase/auth';
+import {
+  addDoc, collection, getFirestore, serverTimestamp,
+} from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDgYexf_Ost9IDBjXjQxt29j2TUeMROoLs',
@@ -18,6 +21,7 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+export const db = getFirestore();
 
 export const provider = new GoogleAuthProvider();
 
@@ -37,13 +41,15 @@ export function useAuth() {
   });
   return currentUser;
 }
-/* export const notes = (title, note) => {
+
+/* FUNCION PARA GUARDAR NOTAS */
+export const notes = (title, note) => {
   const user = auth.currentUser;
   const { uid } = user;
-  addDoc(collection(db, "notes"), {
+  addDoc(collection(db, 'notes'), {
     title,
     note,
-    uid,
+    userID: uid,
     timestamp: serverTimestamp(),
   });
-}; */
+};

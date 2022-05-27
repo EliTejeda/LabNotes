@@ -18,20 +18,34 @@ function Login() {
   };
 
   return (
-    <>
-      <img
-        src={logoTitle}
-        alt="logo_anota"
-      />
-      <h1> Log In </h1>
+    <section className="loginContainer">
+      <div className="imgContainer">
+        <img src={logoTitle} alt="logo_anota" width="400px" />
+      </div>
 
-      <form>
-        <div>
-          <GoogleButton type="light" onClick={handleGoogle} />
+      <div className="welcomeContainer">
+        <h1>
+          <em>Keep in mind, write it down...</em>
+        </h1>
+      </div>
 
-        </div>
+      <div className="enterContainer">
+        <h1> Log In </h1>
+      </div>
+
+      <form
+        className="authContainer"
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <GoogleButton type="light" onClick={handleGoogle} />
       </form>
-    </>
+
+      <footer className="footerLogin">
+        <p className="author">Eli Tejeda &copy; 2022</p>
+      </footer>
+    </section>
   );
 }
 export default Login;

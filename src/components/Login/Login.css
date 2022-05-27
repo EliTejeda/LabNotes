@@ -1,0 +1,41 @@
+.loginContainer{
+display:flex;
+flex-direction: column;
+justify-content: center;
+text-align: center;
+
+}
+.imgContainer{
+margin-top: 200px;
+margin-bottom: 100px;
+}
+
+.welcomeContainer{
+margin-bottom: 100px;
+color:dimgray;
+font-weight: thin;
+
+}
+.enterContainer{
+margin-bottom: 50px;
+font-weight: bold;
+font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.authContainer{
+display: flex;
+text-align: center;
+align-items:center;
+justify-content: center;
+}
+.footerLogin{
+height: 100px;
+width: 100%;
+background-color: black;
+position: absolute;
+bottom: 0;
+color:ghostwhite;
+font-weight: bold;
+font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+font-size: 20px;
+
+}

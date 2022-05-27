@@ -1,0 +1,60 @@
+.createNoteContainer{
+    display:flex;
+}
+
+.menuTop{
+    height: 100px;
+    width: 100%;
+    background-color: rgb(227, 225, 225);
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+
+}
+
+.menuBottom{
+    height: 100px;
+    width: 100%;
+    background-color: rgb(227, 225, 225);
+    display:flex;
+    position: absolute;
+    bottom: 0;
+    align-content: center;
+    justify-content: space-around;
+}
+
+.writeAreaContainer{
+    display: flex;
+    flex-direction: column;
+    margin-top: 150px;
+    margin-left: 30px;
+    margin-right: 10px;
+}
+
+.titleNote{
+    background-color: transparent;
+    height: 75px;
+    font-size: 70px;
+    border:none;
+    color:black;
+
+}
+
+.titleNote:focus{
+    outline: none;
+}
+
+.noteTextArea{
+    margin-top: 40px;
+    background-color: transparent;
+    height: 60px;
+    color: black;
+    font-size: 45px;
+    border: none;
+}
+
+.noteTextArea:focus{
+    outline : none;
+}
