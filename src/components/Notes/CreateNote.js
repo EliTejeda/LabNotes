@@ -1,50 +1,63 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   IoAddCircleSharp, IoPencil, IoTrashBinSharp, IoCloseCircleSharp,
 } from 'react-icons/io5';
 import logoTitle from '../../assets/img/logoTitle.png';
 import './CreateNote.css';
+import { notes } from '../../firebase/firebaseConfig';
 
-export default function NoteOne() {
+export default function CreateNote() {
   const navigate = useNavigate();
 
   const handleClose = () => {
     navigate('/Home');
   };
 
+  // const user = auth.currentUser;
+  const [noteTitle, setNoteTitle] = useState('');
+  const [noteText, setNoteText] = useState('');
+
+  const handleAddNote = () => {
+    console.log(noteTitle);
+    console.log(noteText);
+
+    notes(noteTitle, noteText);
+    navigate('/Home');
+  };
+
+  const Title = (event) => {
+    setNoteTitle(event.target.value);
+  };
+  const Text = (event) => {
+    setNoteText(event.target.value);
+  };
+
   return (
     <section className="createNoteContainer">
       <nav className="menuTop">
         <img src={logoTitle} alt="logo_anota" width="200px" />
-        <IoCloseCircleSharp
-          type="submit"
-          onClick={handleClose}
-          size="3.3em"
-        />
+        <IoCloseCircleSharp type="submit" onClick={handleClose} size="3.3em" />
       </nav>
       <form className="writeAreaContainer">
         <input
           type="text"
           className="titleNote"
           placeholder="Title"
+          onChange={Title}
         />
         <textarea
           className="noteTextArea"
           placeholder="Write your note here"
-          rows="30"
-          cols="30"
+          rows="40"
+          cols="40"
+          onChange={Text}
         />
       </form>
       <footer className="menuBottom">
-        <IoAddCircleSharp
-          className="addNote"
-          type="submit"
-          size="2.4em"
-        />
+        <IoAddCircleSharp className="addNote" type="submit" size="2.4em" onClick={handleAddNote} />
         <IoPencil type="submit" size="2.4em" />
         <IoTrashBinSharp type="submit" size="2.4em" />
-
       </footer>
     </section>
   );
