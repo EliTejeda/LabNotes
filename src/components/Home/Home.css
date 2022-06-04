@@ -29,6 +29,21 @@ justify-content: center;
 .addNote{
 vertical-align: middle;
 margin-top: 20px;
+}
+.notesContainer {
+
+display:grid;
+grid-template-columns: 33% 33% 33% ;
+grid-template-rows: 33% 33% 33% ;
+gap: 16%;
 
 
+
+}
+.boxNotes {
+height: 33%;
+width: 33%;
+outline: 1px;
+overflow: scroll;
+    
 }

@@ -36,8 +36,8 @@ function Login() {
       <form
         className="authContainer"
         direction="column"
-        alignItems="center"
-        justifyContent="center"
+        aligni-items="center"
+        justify-content="center"
       >
         <GoogleButton type="light" onClick={handleGoogle} />
       </form>
