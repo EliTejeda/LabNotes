@@ -10,12 +10,12 @@ import {
 } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyDgYexf_Ost9IDBjXjQxt29j2TUeMROoLs',
-  authDomain: 'anota-30905.firebaseapp.com',
-  projectId: 'anota-30905',
-  storageBucket: 'anota-30905.appspot.com',
-  messagingSenderId: '998588138475',
-  appId: '1:998588138475:web:a0b3e27111c8948c294fae',
+  apiKey: 'AIzaSyBzwFu0RR8VXKAtU9XTOdqqv-gvppwSPEo',
+  authDomain: 'anota2.firebaseapp.com',
+  projectId: 'anota2',
+  storageBucket: 'anota2.appspot.com',
+  messagingSenderId: '457634601185',
+  appId: '1:457634601185:web:3b7e1230674e5cebf7ffa0',
 };
 
 // Initialize Firebase

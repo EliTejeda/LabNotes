@@ -3,15 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IoExitSharp, IoAddCircleSharp } from 'react-icons/io5';
 import { signOut } from 'firebase/auth';
-import { auth } from '../../firebase/firebaseConfig';
-// import CreateNotes from '../Notes/CreateNotes';
-// import NoteOne from '../Notes/NoteOne';
+import {
+  collection, query, orderBy, getDocs,
+} from 'firebase/firestore';
+import { auth, db } from '../../firebase/firebaseConfig';
 import logoTitle from '../../assets/img/logoTitle.png';
 import './Home.css';
 
 export default function Home() {
-  /* const noteOne = { title: 'Pendientes', date: '20/05/2022', text: 'Que sirva esta vaina' };
-  const noteTwo = { title: 'Chores', date: '19/05/2022', text: 'Sacar a pasear al perro' }; */
   const navigate = useNavigate();
 
   const handleLogOut = () => {
@@ -23,18 +22,35 @@ export default function Home() {
     navigate('/CreateNote');
   };
 
-  const [listNotes, setListNotes] = useState([]);
+  const [NotesList, setNotesList] = useState([]);
 
-  async function getResponse(url) {
-    const response = await fetch(url);
-    return response.json();
-  }
+  // FORMULA PARA RENDERIZAR NOTAS
+  // 1.Obtener la info de firebase
+  // 1.1 Obtener id de cada documento
+  // 2 Que devuelva el id de cada documento
+  // 2.1 Renderizado de cada documento con su informacion
+  const getNoteList = async () => {
+    const userId = auth.currentUser;
+    const { uid } = userId;
+    const arrayNotesList = [];
+    const q = query(collection(db, 'notes'), orderBy('date', 'desc'));
+
+    const post = await getDocs(q);
+    console.log(post);
+
+    post.forEach((doc) => {
+      if (doc.data().userId === uid) {
+        arrayNotesList.push({ ...doc.data(), id: doc.id });
+      }
+    });
+    setNotesList(arrayNotesList);
+  };
+  // RENDERIZADO DE NOTAS
   useEffect(() => {
-    getResponse('https://629a9781656cea05fc2bb733.mockapi.io/anota/Notas').then(
-      (json) => setListNotes(json),
-    );
+    getNoteList();
   }, []);
-  console.log(listNotes);
+
+  // 2.2 Crear grid de notas
 
   return (
     <section className="homeContainer">
@@ -43,13 +59,18 @@ export default function Home() {
         <IoExitSharp type="submit" onClick={handleLogOut} size="4.3em" />
       </nav>
       <section className="notesContainer">
-        {listNotes.map((notes) => (
+        {NotesList.map((notes) => (
           <div className="boxNotes" key={notes.id}>
-            <h1>{notes.title }</h1>
+            <div className="notesTitle">
+              {notes.title}
+              <p className="notesText">
+                {' '}
+                {notes.text}
+              </p>
+            </div>
           </div>
         ))}
       </section>
-
       <footer className="menuBottom">
         <IoAddCircleSharp
           className="addNote"
@@ -59,8 +80,5 @@ export default function Home() {
         />
       </footer>
     </section>
-
-  /* <NoteOne props={noteOne} />
-      <NoteOne props={noteTwo} /> */
   );
 }
