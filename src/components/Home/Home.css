@@ -15,39 +15,44 @@ position: fixed;
 
 }
 
-.menuBottom{
-height: 100px;
-width: 100%;
-background-color: rgb(227, 225, 225);
-display:flex;
-position: absolute;
-bottom: 0;
-align-content: center;
-justify-content: center;
-}
-
 .addNote{
 vertical-align: middle;
 margin-top: 20px;
 }
 
 .notesContainer { /* contenedor de notas */
-display:grid;
-grid-template-columns: 30% 30% 30% ;
-grid-template-rows: 30% 30% 30% ;
-overflow: scroll;
+    padding: 4em;
+    display:grid;
+    grid-template-columns: repeat(3, 3fr);
+    grid-gap: 30px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+    overflow: auto;
+    height: 75%;
+
 }
 
 .notesTitle{
-    width: 50px;
-    height: 50px;
+    width: 150px;
+    height: 150px;
     background-color: blue;
     z-index: 3;
 }
+
+.notesText{
+    width: 80px;
+    height: 80px;
+    background-color: rgb(187, 255, 0);
+    z-index: 5;
+}
+
 
 .boxNotes {
 width: 250px;
 height: 250px;
 background-color: aqua;
+overflow: auto;
     
 }

@@ -19,7 +19,7 @@
     width: 100%;
     background-color: rgb(227, 225, 225);
     display:flex;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     align-content: center;
     justify-content: space-around;

@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IoExitSharp, IoAddCircleSharp } from 'react-icons/io5';
@@ -25,27 +26,24 @@ export default function Home() {
   const [NotesList, setNotesList] = useState([]);
 
   // FORMULA PARA RENDERIZAR NOTAS
-  // 1.Obtener la info de firebase
-  // 1.1 Obtener id de cada documento
-  // 2 Que devuelva el id de cada documento
-  // 2.1 Renderizado de cada documento con su informacion
+
   const getNoteList = async () => {
-    const userId = auth.currentUser;
-    const { uid } = userId;
+    const userID = auth.currentUser;
+    const { uid } = userID;
     const arrayNotesList = [];
-    const q = query(collection(db, 'notes'), orderBy('date', 'desc'));
+    const q = query(collection(db, 'notes'), orderBy('timestamp', 'desc'));
 
     const post = await getDocs(q);
     console.log(post);
 
     post.forEach((doc) => {
-      if (doc.data().userId === uid) {
+      if (doc.data().userID === uid) {
         arrayNotesList.push({ ...doc.data(), id: doc.id });
       }
     });
     setNotesList(arrayNotesList);
   };
-  // RENDERIZADO DE NOTAS
+  // useEffect sirve para que renderice por primera vez
   useEffect(() => {
     getNoteList();
   }, []);
@@ -64,8 +62,7 @@ export default function Home() {
             <div className="notesTitle">
               {notes.title}
               <p className="notesText">
-                {' '}
-                {notes.text}
+                {notes.note}
               </p>
             </div>
           </div>
