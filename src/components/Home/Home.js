@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
@@ -16,6 +17,7 @@ import {
 import { auth, db } from '../../firebase/firebaseConfig';
 import logoTitle from '../../assets/img/logoTitle.png';
 import './Home.css';
+import RenderNotes from '../Notes/RenderNotes';
 
 const MySwal = withReactContent(Swal);
 
@@ -53,31 +55,6 @@ export default function Home() {
     setNotesList(arrayNotesList);
   };
 
-  // BORRA
-  const deleteItem = async (id) => {
-    const noteReferenceId = doc(db, 'notes', id);
-    await deleteDoc(noteReferenceId);
-    getNoteList();
-  };
-
-  // SWEET ALERT...
-  const handleDeleteItem = (id) => {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        deleteItem(id);
-        MySwal.fire('Deleted!', 'Your file has been deleted.', 'success');
-      }
-    });
-  };
-
   // useEffect sirve para que renderice por primera vez
   useEffect(() => {
     getNoteList();
@@ -93,19 +70,7 @@ export default function Home() {
       </nav>
       <section className="notesContainer">
         {NotesList.map((notes) => (
-          <div className="boxNotes" key={notes.id}>
-            <div className="notesTitle">
-              {notes.title}
-              <p className="notesText">{notes.note}</p>
-              <IoTrashBinSharp
-                className="deleteItem"
-                type="button"
-                size="2.3em"
-                onClick={() => { handleDeleteItem(notes.id); }}
-
-              />
-            </div>
-          </div>
+          <RenderNotes props={notes} />
         ))}
       </section>
       <footer className="menuBottom">
