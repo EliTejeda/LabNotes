@@ -1,8 +1,8 @@
 .card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 255, 1);
-    background-color: azure;
+    box-shadow: 0 4px 8px 0 rgb(85, 85, 94);
+    background-color: rgb(251, 251, 251);
 }
 
 .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(255, 0, 0, 1 );
+    box-shadow: 0 8px 16px 0 rgb(26, 24, 24);
 }
