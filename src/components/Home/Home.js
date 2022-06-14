@@ -60,6 +60,31 @@ export default function Home() {
     getNoteList();
   }, []);
 
+  // BORRA
+  const deleteItem = async (id) => {
+    const noteReferenceId = doc(db, 'notes', id);
+    await deleteDoc(noteReferenceId);
+    getNoteList();
+  };
+
+  // SWEET ALERT...
+  const handleDeleteItem = (id) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteItem(id);
+        MySwal.fire('Deleted!', 'Your file has been deleted.', 'success');
+      }
+    });
+  };
+
   // 2.2 Crear grid de notas
 
   return (
@@ -70,7 +95,7 @@ export default function Home() {
       </nav>
       <section className="notesContainer">
         {NotesList.map((notes) => (
-          <RenderNotes props={notes} />
+          <RenderNotes key="{notes.id}" notes={notes} sweetAlert={handleDeleteItem} />
         ))}
       </section>
       <footer className="menuBottom">

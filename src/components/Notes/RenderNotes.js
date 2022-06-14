@@ -1,41 +1,48 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
-import { IoExitSharp, IoPencil, IoTrashBinSharp } from 'react-icons/io5';
+import { useNavigate } from 'react-router-dom';
+import { IoTrashBinSharp } from 'react-icons/io5';
+import { AiFillEdit } from 'react-icons/ai';
 import './RenderNotes.css';
 
 // eslint-disable-next-line react/prop-types
-export default function RenderNotes({ props }) {
+export default function RenderNotes(props) {
+  const navigate = useNavigate();
   // eslint-disable-next-line react/prop-types
-  const { id, note } = props;
+  const {
+    id, note, title, timestamp,
+  } = props.notes;
   const divStyle = {
     float: 'right',
   };
-  const handleLogOut = () => {};
+  const handleDeleteNote = () => {
+    props.sweetAlert(id);
+  };
+
+  const handleEditNote = () => {
+    navigate('/CreateNote', { state: { noteid: id, noteContent: note, noteTitle: title } });
+  };
 
   return (
     <section className="card">
       <p>
-        {id}
-        <IoExitSharp
+        {title}
+        <AiFillEdit
           type="submit"
-          onClick={handleLogOut}
-          size="1.2em"
-          style={divStyle}
-        />
-        <IoPencil
-          type="submit"
-          onClick={handleLogOut}
+          onClick={handleEditNote}
           size="1.2em"
           style={divStyle}
         />
         <IoTrashBinSharp
           type="submit"
-          onClick={handleLogOut}
+          onClick={handleDeleteNote}
           size="1.2em"
           style={divStyle}
         />
       </p>
-      <p>00/00/0000</p>
       <p>{note}</p>
+      <p>{new Date(timestamp.seconds * 1000).toLocaleString()}</p>
     </section>
   );
 }

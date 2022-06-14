@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
-  IoAddCircleSharp, IoPencil, IoTrashBinSharp, IoCloseCircleSharp,
+  IoSave, IoTrashBinSharp, IoCloseCircleSharp,
 } from 'react-icons/io5';
+import { AiFillEdit } from 'react-icons/ai';
 import logoTitle from '../../assets/img/logoTitle.png';
 import './CreateNote.css';
 import { notes } from '../../firebase/firebaseConfig';
 
 export default function CreateNote() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleClose = () => {
     navigate('/Home');
@@ -44,6 +46,7 @@ export default function CreateNote() {
           type="text"
           className="titleNote"
           placeholder="Title"
+          defaultValue={location.state.noteTitle}
           onChange={Title}
         />
         <textarea
@@ -51,12 +54,18 @@ export default function CreateNote() {
           placeholder="Write your note here"
           rows="40"
           cols="40"
+          defaultValue={location.state.noteContent}
           onChange={Text}
         />
       </form>
       <footer className="menuBottom">
-        <IoAddCircleSharp className="addNote" type="submit" size="2.4em" onClick={handleAddNote} />
-        <IoPencil type="submit" size="2.4em" />
+        <IoSave
+          className="addNote"
+          type="submit"
+          size="2.4em"
+          onClick={handleAddNote}
+        />
+        <AiFillEdit type="submit" size="2.4em" />
         <IoTrashBinSharp type="submit" size="2.4em" />
       </footer>
     </section>
