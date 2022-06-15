@@ -29,13 +29,15 @@ export default function Home() {
       .then(() => navigate('/'))
       .catch((error) => console.log(error));
   };
+
+  // FUNCION PARA AGREGAR NOTAS
   const handleAddNote = () => {
-    navigate('/CreateNote');
+    navigate('/CreateNote', { state: { noteId: 'noId', noteContent: '', noteTitle: '' } });
   };
 
   const [NotesList, setNotesList] = useState([]);
 
-  // FORMULA PARA RENDERIZAR NOTAS
+  // FUNCION PARA RENDERIZAR NOTAS
 
   const getNoteList = async () => {
     const userID = auth.currentUser;
@@ -60,7 +62,7 @@ export default function Home() {
     getNoteList();
   }, []);
 
-  // BORRA
+  // FUNCION PARA BORRAR NOTAS
   const deleteItem = async (id) => {
     const noteReferenceId = doc(db, 'notes', id);
     await deleteDoc(noteReferenceId);
@@ -85,7 +87,7 @@ export default function Home() {
     });
   };
 
-  // 2.2 Crear grid de notas
+  // GRID DE NOTAS
 
   return (
     <section className="homeContainer">

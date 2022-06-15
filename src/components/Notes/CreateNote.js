@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
-  IoSave, IoTrashBinSharp, IoCloseCircleSharp,
+  IoSave, IoCloseCircleSharp,
 } from 'react-icons/io5';
-import { AiFillEdit } from 'react-icons/ai';
 import logoTitle from '../../assets/img/logoTitle.png';
 import './CreateNote.css';
-import { notes } from '../../firebase/firebaseConfig';
+import { notes, updateNote } from '../../firebase/firebaseConfig';
 
+// FUNCION PARA CREAR NOTAS
 export default function CreateNote() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -16,15 +16,17 @@ export default function CreateNote() {
     navigate('/Home');
   };
 
-  // const user = auth.currentUser;
   const [noteTitle, setNoteTitle] = useState('');
   const [noteText, setNoteText] = useState('');
 
-  const handleAddNote = () => {
-    console.log(noteTitle);
-    console.log(noteText);
+  // FUNCION PARA AGREGAR NOTA CREADA Y ACTUALIZAR LA EDICION
 
-    notes(noteTitle, noteText);
+  const handleAddNote = () => {
+    if (location.state.noteId === 'noId') {
+      notes(noteTitle, noteText);
+    } else {
+      updateNote(location.state.noteId, location.state.noteTitle, location.state.noteContent);
+    }
     navigate('/Home');
   };
 
@@ -62,11 +64,9 @@ export default function CreateNote() {
         <IoSave
           className="addNote"
           type="submit"
-          size="2.4em"
+          size="3.3em"
           onClick={handleAddNote}
         />
-        <AiFillEdit type="submit" size="2.4em" />
-        <IoTrashBinSharp type="submit" size="2.4em" />
       </footer>
     </section>
   );

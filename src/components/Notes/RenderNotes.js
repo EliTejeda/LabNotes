@@ -6,13 +6,7 @@ import { IoTrashBinSharp } from 'react-icons/io5';
 import { AiFillEdit } from 'react-icons/ai';
 import './RenderNotes.css';
 
-// cajita : toda la notita
-// cajita 1: título
-// c 2 : texto
-// c 3 tenemos iconos
-// c 4 tenemos timestamp
-
-// eslint-disable-next-line react/prop-types
+// FUNCION PARA RENDERIZAR LA LISTA DE NOTAS
 export default function RenderNotes(props) {
   const navigate = useNavigate();
   // eslint-disable-next-line react/prop-types
@@ -22,12 +16,15 @@ export default function RenderNotes(props) {
   const divStyle = {
     float: 'right',
   };
+
+  // FUNCION PARA BORRAR NOTAS
   const handleDeleteNote = () => {
     props.sweetAlert(id);
   };
 
+  // FUNCION PARA EDITAR NOTAS
   const handleEditNote = () => {
-    navigate('/CreateNote', { state: { noteid: id, noteContent: note, noteTitle: title } });
+    navigate('/CreateNote', { state: { noteId: id, noteContent: note, noteTitle: title } });
   };
 
   return (
