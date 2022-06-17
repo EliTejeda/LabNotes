@@ -16,8 +16,8 @@ export default function CreateNote() {
     navigate('/Home');
   };
 
-  const [noteTitle, setNoteTitle] = useState('');
-  const [noteText, setNoteText] = useState('');
+  const [noteTitle, setNoteTitle] = useState(location.state.noteTitle);
+  const [noteText, setNoteText] = useState(location.state.noteContent);
 
   // FUNCION PARA AGREGAR NOTA CREADA Y ACTUALIZAR LA EDICION
 
@@ -25,7 +25,7 @@ export default function CreateNote() {
     if (location.state.noteId === 'noId') {
       notes(noteTitle, noteText);
     } else {
-      updateNote(location.state.noteId, location.state.noteTitle, location.state.noteContent);
+      updateNote(location.state.noteId, noteTitle, noteText);
     }
     navigate('/Home');
   };
