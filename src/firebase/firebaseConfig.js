@@ -6,7 +6,7 @@ import {
   getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged,
 } from 'firebase/auth';
 import {
-  addDoc, collection, getFirestore, serverTimestamp, updateDoc, doc,
+  addDoc, collection, getFirestore, updateDoc, doc,
 } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -50,15 +50,17 @@ export const notes = (title, note) => {
     title,
     note,
     userID: uid,
-    timestamp: serverTimestamp(),
+    timestamp: Date.now(),
   });
 };
 /* FUNCION PARA ACTUALIZAR NOTAS */
 export const updateNote = (id, title, note) => {
+  const timestamp = Date.now();
   const ref = doc(db, 'notes', id);
   updateDoc(ref, {
     id,
     title,
     note,
+    timestamp,
   });
 };
