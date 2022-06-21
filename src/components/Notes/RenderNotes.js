@@ -46,6 +46,7 @@ export default function RenderNotes(props) {
     <section className="card">
       <p>
         <AiFillEdit
+          className="icons"
           type="submit"
           onClick={handleEditNote}
           size="1.2em"
@@ -53,11 +54,10 @@ export default function RenderNotes(props) {
         />
       </p>
       <p>{title}</p>
-      <p>{note}</p>
-      <p className="noteDate">
-        {getDateFormat2(timestamp)}
-      </p>
+      <p className="textContainer">{note}</p>
+      <p className="noteDate">{getDateFormat2(timestamp)}</p>
       <IoTrashBinSharp
+        className="icons"
         type="submit"
         onClick={handleDeleteNote}
         size="1.2em"
