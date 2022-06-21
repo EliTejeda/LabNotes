@@ -31,8 +31,8 @@
     margin-top: 150px;
     margin-left: 30px;
     margin-right: 10px;
-    width: 100vw;
-    height: 100vh;
+    width: fit-content;
+    height: fit-content;
 }
 
 .titleNote{
@@ -43,6 +43,7 @@
     color:black;
     font-weight: bolder;
     text-align: center;
+    width: 90%;
 
 }
 
@@ -51,14 +52,14 @@
 }
 
 .noteTextArea{
-    margin-top: 40px;
+    margin: 40px 5% 0 5%;
     background-color: transparent;
     height: 60px;
     color: black;
     font-size: 45px;
     border: none;
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
 
 }
 

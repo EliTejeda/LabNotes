@@ -31,7 +31,8 @@ margin-top: 20px;
     text-align: center;
     justify-content: center;
     overflow: auto;
-    height: 75%;
+    height: 100%;
+    border:none;
 
 }
 
