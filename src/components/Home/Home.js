@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 /* eslint-disable react/prop-types */
@@ -12,7 +13,7 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { signOut } from 'firebase/auth';
 import {
-  collection, query, orderBy, getDocs, doc, deleteDoc,
+  collection, query, orderBy, getDocs, doc, deleteDoc, where,
 } from 'firebase/firestore';
 import { auth, db } from '../../firebase/firebaseConfig';
 import logoTitle from '../../assets/img/logoTitle.png';
@@ -41,9 +42,11 @@ export default function Home() {
 
   const getNoteList = async () => {
     const userID = auth.currentUser;
+    console.log(userID);
     const { uid } = userID;
     const arrayNotesList = [];
-    const q = query(collection(db, 'notes'), orderBy('timestamp', 'desc'));
+    //  const q = query(collection(db, 'notes'), orderBy('timestamp', 'desc'), where('userID', '==', uid));
+    const q = query(collection(db, 'notes'), orderBy('timestamp', 'desc'), where('userID', '==', uid));
 
     const post = await getDocs(q);
     console.log(post);
@@ -97,7 +100,7 @@ export default function Home() {
       </nav>
       <section className="notesContainer">
         {NotesList.map((notes) => (
-          <RenderNotes key="{notes.id}" notes={notes} sweetAlert={handleDeleteItem} />
+          <RenderNotes key={notes.id} notes={notes} sweetAlert={handleDeleteItem} />
         ))}
       </section>
       <footer className="menuBottom">
