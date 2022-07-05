@@ -45,7 +45,6 @@ export default function Home() {
     console.log(userID);
     const { uid } = userID;
     const arrayNotesList = [];
-    //  const q = query(collection(db, 'notes'), orderBy('timestamp', 'desc'), where('userID', '==', uid));
     const q = query(collection(db, 'notes'), orderBy('timestamp', 'desc'), where('userID', '==', uid));
 
     const post = await getDocs(q);

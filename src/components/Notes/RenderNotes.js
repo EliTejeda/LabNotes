@@ -30,12 +30,7 @@ export default function RenderNotes(props) {
     navigate('/CreateNote', { state: { noteId: id, noteContent: note, noteTitle: title } });
   };
 
-/* const getDateFormat = (dateStamp) => {
-    const date = new Date(dateStamp);
-    return `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}   ${date.getHours()}:${date.getMinutes()}`;
-}; */
-
-  const getDateFormat2 = (dateStamp) => {
+    const getDateFormat2 = (dateStamp) => {
     const date = new Date(dateStamp);
     const daysWeek = ['domingo', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sábado'];
     const monthYear = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
